@@ -1,81 +1,85 @@
-'use strict';
-// Создаем генератор ошибок и сообщаем разработчику или пользователю об ошибке
-const data = [
-    {
-        id: 'box',
-        tag: 'div'
-    },
-    {
-        id: '',
-        tag: 'nav'
-    },
-    {
-        id: 'circle',
-        tag: ''
-    }
-]
+'use strict'
+// Регулярные выражения 
 
-/* data.forEach((blockObj, i) => {
-    const block = document.createElement(blockObj.tag);
+// new RegExp('pattern', 'flags'); // это устаревший метод
 
-    // Если у blockObj.id нет своего id выведу (`В данных под номером ${i + 1} нет id`);
-   // if(!blockObj.id) throw new Error(`В данных под номером ${i + 1} нет id`);
-    
-
-    block.setAttribute('id', blockObj.id);
-    document.body.append(block);
-});
-
-const err = new  Error('bddfdf'); // удобно ошибкам давать свой err.name SyntaxError - например
-console.log(err.name, err.message, err.stack); 
-//Error bddfdf Error: bddfdf
-//    at http://127.0.0.1:5500/lesons106/script.js:29:13
-// Error - это err.name,  err.message, - 'bddfdf', at http://127.0.0.1:5500/lesons106/script.js:29:13 - err.stack */
+// соременный метод написания регулярного выражения /pattern/f
+//     /pattern/f
 
 
-// ПРИМЕР с TRY CATCH
+// Пример когда мне нужно найти все маленькие будвы n в строке
+//const ans = prompt('Введите ваше имя');
 
-/* try {
-  data.forEach((blockObj, i) => {
-    const block = document.createElement(blockObj.tag);
+// регулярное выражение. Это шаблон того, что я ищу два слеша в этом случае это /pattern/ - т.е. пример того, что ищу напимер какую-то букву n,m,a,f
+//const reg = /n/;
+//console.log(ans.search(reg)); //.search(reg); будет искать пример, что находится в reg внутри строки. При вводе, допустим, Ann в консоль получу 1, это говорит, что он нашел и эта буква стоит на первой позиции, а если нет данной буквы в строке тогла будет -1/. Жтот метод ищё толтко первое совпадение дальше он рабоать не будет. Т.е. в режиме /n/g и /n/m он работать не будет
 
-    // Если у blockObj.id нет своего id выведу (`В данных под номером ${i + 1} нет id`);
-    if(!blockObj.id) throw new SyntaxError(`В данных под номером ${i + 1} нет id`);
-    
-    block.setAttribute('id', blockObj.id);
-    document.body.append(block);
-});
-} catch(e) { // ошибка которая не выполнилась в try прихожит в catch в виде объекта 'e'по этому тут эта буква
-  console.error(e.name); // console.error(e.name); будет подсвечено красным цветом
-  console.log(e.name);
-  console.log(e.message);
-  console.log(e.stack);
-  // SyntaxError: В данных под номером 2 нет id
-  //  at script.js:43:28
-  //  at Array.forEach (<anonymous>)
-  //  at script.js:39:8
+// а если я хочу найти не только первую большую букву или маленькую, а первую, вторую и т.д. Для этого есть 'flags' и их класических 3 штуки
+// i - ищет внезависимости региста  const reg = /n/i;
+// g - global ищёт сразу несколько символов const reg = /n/g;
+// m - многострочный режим включая переносы const reg = /n/m;
+// Флаги можно комбинировать, чтобы искать, что-то в нужном порядке const reg = /n/gim
+
+// все методы search(reg)), match(reg2) - это методы строк
+
+// const ans = prompt('Введите ваше имя');
+//const reg = /n/ig; // (2) ['N', 'N']
+//console.log(ans.match(reg)); 
+//const reg = /n/ig; // (2) ['N', 'N']
+//const reg = /n/i; ['n', index: 1, input: 'Ann', groups: undefined]
+// =======================================================================================
+
+
+// Метод replace 
+//const pass = prompt('Password');
+// replace("Что меняем", "На что меняем")
+// console.log(pass.replace(/./g, "*")); //В случае когда я ставлю в регульрное выражение точку "." это значит, что я буду абсолютно все символы менять на "*"
+
+//console.log(pass.replace(/\./g, "*")); // а чтобы исключить символы перед точкой или что-то другое нужно поставить символ экранирования - обратный слеш. Т.е. всё кроме точки не будет меняться, а все точки будут заменены на "*". ssdsds***
+
+// ПРИМЕР. Я хочу убрать все дефисы на ":". Допустим для часов
+console.log('12-34-56'.replace(/-/g, ":")); //12:34:56
+
+
+// Тестирую на совпадение как-того элемента если есть тогда true елли нет тогда false. МОжно искать всё, что угодно число, строку или класс символов типа слова, цифры,  пробелы. Существуют классы для поиска записваются они так
+// \d -  diggets - ищу цифры const reg = /\d/ig;
+// \w - ищем слова и буквы
+// \s - ищем пробелы const reg = / /ig; - ставить пробел
+
+const ans = prompt('Введите ваше число');
+const reg = /\d/; // ['5', index: 6, input: 'sdsdsd5dsd', groups: undefined]
+//const reg = /\d/g; // если введу 200рх получу -  ['2', '0', '0']
+console.log(ans.match(reg));
+
+// вырезаю имя из строки 
+const str = "My name is R2D2"
+// нахожу конструкцию которая начинвется с буквы, дальше цифра, дальше буква, дальше цифра
+console.log(str.match(/\w\d\w\d/i)); // ['R2D2', index: 11, input: 'My name is R2D2', groups: undefined]
+
+//================================================================================================
+// ПРИМЕР! Поиск не чисел, не букв. Это называется обратные классы 
+
+// \D - ищу не цифры
+// \W - ищу не буквы
+
+const str2 = "My name is R2D2"
+//console.log(str2.match(/\W/i)); // ищё не буквы [' ', index: 2, input: 'My name is R2D2', groups: undefined] - нашло только первый пробел т.к. я задал искать не буквы, а на счет цифр ничего не сказал
+//console.log(str2.match(/\W/gi)); // [' ', ' ', ' '] - нашел все пробелы
+console.log(str2.match(/\D/gi)); //['M', 'y', ' ', 'n', 'a', 'm', 'e', ' ', 'i', 's', ' ', 'R', 'D'] - нашел всё кроме цифр
+
+
+
+const promisify = (item, delay) =>
+    new Promise(resolve => setTimeout(() => resolve(item), delay));
+ 
+const a = () => promisify('a', 100);
+const b = () => promisify('b', 5000);
+const c = () => promisify('c', 3000);
+ 
+async function two() {
+    const promises = [a(), b(), c()];
+    const outpu1 = await Promise.race(promises);
+    return `two is done: ${outpu1}`;
 }
-
-//const err = new  SyntaxError('bddfdf'); // хоть и в try будет ошибка, но JS не перестанет выполнятся т.к. использую конструкцию try catch
-//console.log(err.name, err.message, err.stack); */
-
-// ПРИМЕР когда ошибки действительно критичны таку, что не предвидели допустим у const data в не указано какой-то ствойство, напирмер у последнего объекта нет в tag 'span' 
-try {
-  data.forEach((blockObj, i) => {
-    const block = document.createElement(blockObj.tag);
-
-    // Если у blockObj.id нет своего id выведу (`В данных под номером ${i + 1} нет id`);
-    if(!blockObj.id) throw new SyntaxError(`В данных под номером ${i + 1} нет id`);
-    
-    block.setAttribute('id', blockObj.id);
-    document.body.append(block);
-});
-} catch(e) { // ошибка которая не выполнилась в try прихожит в catch в виде объекта 'e'по этому тут эта буква 
-  
-  // Если сработала моя предвиденная ошибка 
-  if(e.name === 'SyntaxError') {
-    console.log(e.message);
-  } else { // если, что-то не предвиденное тогда выбрасываю её из блока catch(e), тогда JS полностьью остановится и выдаст класическую ошибку в консоли и перестанет вообще, что-либо делать
-    throw new e;
-  }
-}
+ 
+two().then(console.log);
