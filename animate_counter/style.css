@@ -1,0 +1,122 @@
+.addon__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center
+}
+
+.addon__title {
+  font-size: 22px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  position: relative;
+  z-index: 0;
+  padding: 0 10px
+}
+
+.addon__title::after {
+  position: absolute;
+  content: '';
+  width: 50%;
+  height: 200%;
+  border: 7px solid rgba(34, 161, 196, 0.6);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 30px;
+  z-index: -1
+}
+
+.addon__title span {
+  color: #3a8e2f
+}
+
+.addon__contnet {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 70%;
+  flex: 0 0 70%
+}
+
+.addon__contnet-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  position: relative;
+  border-bottom: 1px solid #fff
+}
+
+.addon__contnet-title::before {
+  position: absolute;
+  content: '';
+  background-color: #22a1c4;
+  width: 100px;
+  height: 3px;
+  bottom: -2px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%)
+}
+
+.addon__contnet-title::after {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #22a1c4;
+  left: 50%;
+  bottom: -5px;
+  -webkit-transform: translateX(-50%) rotate(45deg);
+  transform: translateX(-50%) rotate(45deg)
+}
+
+.addon__template {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between
+}
+
+.addon__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  max-width: 33%;
+  width: 100%;
+  padding: 0 10px
+}
+
+.addon__number {
+  font-size: 65px;
+  text-shadow: 8px 8px 0px rgba(150, 150, 150, 0.3)
+}
+
+.addon__number::after {
+  content: '+';
+  font-size: 65px;
+  color: #fff;
+  text-shadow: 8px 8px 0px rgba(150, 150, 150, 0.3);
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%)
+}
+
+.addon__number-title {
+  font-size: 14px
+}
